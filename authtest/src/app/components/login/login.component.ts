@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'login',
@@ -8,18 +9,18 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  test: string = 'just a test';
+  user: User = new User ();
 
   constructor(private auth: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
 
-    let sampleUser: any = {
-      username: 'iman' as string,
-      password: 'testing123' as string
-    };
-    this.auth.login(sampleUser).then((user) => {
+  onLogin(): void {
+
+    this.auth.login(this.user).then((user) => {
       console.log(user.json());
+      localStorage.setItem('token', user.json().token);
     })
     .catch((err) => {
       console.log(err);
