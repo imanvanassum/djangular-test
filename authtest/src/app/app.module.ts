@@ -11,6 +11,10 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { StatusComponent } from './components/status/status.component';
 
+import { AuthService } from './services/auth.service';
+import { EnsureAuthenticated } from './services/ensure-authenticated.service';
+import { LoginRedirect } from './services/login-redirect.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,7 @@ import { StatusComponent } from './components/status/status.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [  ],
+  providers: [ AuthService, EnsureAuthenticated, LoginRedirect ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
